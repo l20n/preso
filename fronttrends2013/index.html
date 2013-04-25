@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Responsive Localization with L20n</title>
+
+		<script type="application/l20n" src="index.l20n"></script>
+		<script src="js/l20n.js"></script>
+    <script>
+      //document.l10n.addEventListener('error', console.log)
+    </script>
+    
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>Responsive Localization</h1>
+					<h3>with L20n</h3>
+				</section>
+
+				<section>
+          <h2>How many of you…</h2>
+          <p>are native English speakers?</p>
+				</section>
+
+				<section>
+          <h2>Content localization</h2>
+          <p>vs.</p>
+          <h2>UI localization</h2>
+				</section>
+
+				<section>
+          <h2>UI localization</h2>
+          <p>Zbigniew Braniecki, @zbraniecki</p>
+          <p>Staś Małolepszy, @stas</p>
+				</section>
+
+				<section>
+          <img src="img/spotify.png">
+				</section>
+
+
+				<section>
+          <h2>How does interface localization work?</h2>
+          <p class="fragment">dated approach</p>
+          <p class="fragment">English-centric</p>
+          <p class="fragment">key-value pairs</p>
+          <p class="fragment">plurals if you're lucky</p>
+				</section>
+
+				<section>
+          <img src="img/keyvalue.png">
+				</section>
+
+				<section>
+          <h2>File &rarr; Open…</h2>
+				</section>
+
+				<section>
+          <h2>Jane liked
+            <span class="fragment roll-in">your album with 4 photos</span>
+            <span class="fragment roll-in">and shared 3 of them</span>
+            <span class="fragment roll-in">to her 357 followers</span>
+            <span class="fragment roll-in">in 4 countries</span>
+            <span class="fragment roll-in">at 9.23 AM yesterday</span>
+            <span class="fragment roll-in">(on April 24th, 2013).</span>
+            <span class="fragment roll-in">Have a good day!</span>
+          </h2>
+          <h3 class="fragment roll-in">(You have 3 more unread notifications)</h3>
+				</section>
+
+				<section>
+          <div>
+            <h2>localization logic in your source code</h2>
+            <p>(if you're a developer)</p>
+          </div>
+          <div class="fragment">
+            <h2>other languages' logic in your language's logic</h2>
+            <p>(if you're a localizer)</p>
+          </div>
+				</section>
+
+				<section>
+          <h2>and, perhaps more importantly</h2>
+          <div class="fragment">
+            <h2>poor UX</h2>
+            <p>(if you're a user)</p>
+          </div>
+				</section>
+
+				<section>
+          <img src="img/alarm.png">
+				</section>
+
+				<section>
+          <h2>New paradigm</h2>
+          <p class="fragment">client-side</p>
+          <p class="fragment">isolated</p>
+          <p class="fragment">grammar-agnostic</p>
+          <p class="fragment">responsive</p>
+          <p class="fragment">based on a social contract</p>
+				</section>
+
+				<section>
+					<h2>What L20n looks like</h2>
+					<pre class="fragment"><code contenteditable>
+&lt;h2 l10n-id="hello">&lt;/h2>
+					</code></pre>
+					<pre class="fragment"><code class="php" contenteditable>
+&lt;hello "Hello, World!">
+					</code></pre>
+					<pre class="fragment"><code class="php" contenteditable>
+&lt;hello "Witaj świecie!">
+					</code></pre>
+					<pre class="fragment"><code contenteditable>
+document.l10n.get('hello');
+					</code></pre>
+				</section>
+
+        <section>
+					<h2 data-l10n-id="hello"></h2>
+        </section>
+
+				<section>
+					<h2>Language isolation</h2>
+					<pre class="fragment"><code class="php" contenteditable>
+&lt;liked "{{ $user.name }} liked your photo.">
+					</code></pre>
+
+					<pre class="fragment"><code class="php" contenteditable>
+&lt;liked[$user.gender] {
+  feminine: "{{ $user.name }} polubiła twoje zdjęcie.",
+  masculine: "{{ $user.name }} polubił twoje zdjęcie.",
+}>
+					</code></pre>
+				</section>
+
+        <section>
+          <h2>Encapsulation</h2>
+          <pre><code class="javascript" contenteditable>
+document.l10n.localize(['hello', 'new'], function(l10n) {
+  var node = document.querySelector('[l10n-id=hello]');
+  node.textConent = l10n.entities.hello;
+  node.classList.remove('hidden');
+});
+					</code></pre>
+        </section>
+
+        <section>
+          <h2>Social contract</h2>
+          <p>Developers provide important data as <em>context data</em></p>
+          <p>L20n always returns strings</p>
+        </section>
+
+        <section>
+          <h2>Responsive</h2>
+          <p>Retranslate pieces of UI when something changes</p>
+        </section>
+
+				<section>
+          <img src="img/responsive.jpg">
+				</section>
+
+        <section>
+          <h2>1.0 Beta</h2>
+          <p>Released today</p>
+          <p>Try it at <a href="http://l20n.org">l20n.org</a></p>
+          <p>Fork it at <a href="https://github.com/l20n/">github.com/l20n</a></p>
+        </section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: 'default',
+				transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
