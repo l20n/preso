@@ -1,0 +1,16 @@
+<_miasta {
+  poznan: {
+   *mianownik: "Poznań",
+    miejscownikW: "w Poznaniu"
+  },
+  wroclaw: {
+   *mianownik: "Wrocław",
+    miejscownikW: "we Wrocławiu"
+  },
+ *nieznane: {
+   *mianownik: "{{ $city.name }}",
+    miejscownikW: "w mieście {{ $city.name }}",
+  }
+}>
+
+<title "Meet.js {{ _miasta[$city.slug].miejscownikW }}">

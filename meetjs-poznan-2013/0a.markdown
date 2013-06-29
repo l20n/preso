@@ -1,0 +1,10 @@
+
+
+
+{{ userName }} polubił twoje zdjęcie
+Najpopularniejsze w {{ country }}
+Przetłumacz {{ appName }}
+
+
+
+

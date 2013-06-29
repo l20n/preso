@@ -1,0 +1,10 @@
+
+
+document.l10n.get('hello');
+
+
+document.l10n.localize(['hello'], function(l10n) {
+  var node = document.querySelector('[data-l10n-id=hello]');
+  node.textConent = l10n.entities.hello;
+});
+
