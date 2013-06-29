@@ -1,0 +1,10 @@
+
+
+
+Przetłumacz {{ appName.biernik }}
+
+
+
+
+
+

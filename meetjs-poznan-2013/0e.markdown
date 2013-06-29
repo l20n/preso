@@ -1,0 +1,10 @@
+
+
+
+username.gender
+
+  masculine? {{ userName }} polubił twoje zdjęcie
+
+  feminine? {{ userName }} polubiła twoje zdjęcie
+
+

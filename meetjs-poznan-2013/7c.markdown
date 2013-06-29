@@ -1,0 +1,10 @@
+
+
+
+<hello "Hello, world!">
+
+
+<hello[poraDnia(@hour)] {
+ *rano: "Dzień dobry, świecie",
+  wieczor: "Dobry wieczór, świecie",
+}>
