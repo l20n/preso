@@ -1,0 +1,22 @@
+<self "DjangoCon">
+
+<hello """
+  Hello from 
+  {{ self }}!
+""">
+
+<like """
+  {{ $user.name }} 
+  liked your photo.
+""">
+
+<liked[$user.gender] {
+  feminine: """
+    {{ $user.name }} 
+    polubiła twoje zdjęcie.
+  """,
+  masculine: """
+    {{ $user.name }} 
+    polubił twoje zdjęcie.
+  """
+}> 

@@ -1,0 +1,14 @@
+<self "DjangoCon">
+
+<hello """
+""">
+
+<liked """
+""">
+
+<liked[$user.gender] {
+  feminine: """
+  """,
+  masculine: """
+  """,
+}>
